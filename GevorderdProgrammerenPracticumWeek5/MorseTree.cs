@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GevorderdProgrammerenPracticumWeek5
 {
     public class MorseTree
     {
         #region given code
+
         private char character;
         private MorseTree dot;
         private MorseTree dash;
@@ -33,24 +37,24 @@ namespace GevorderdProgrammerenPracticumWeek5
 
             return this;
         }
+
         #endregion
 
         public char GiveCharacterByMorseCode(string morsecode)
-        {     
-            if (morsecode == "")
-                return character;
-                 
-            return morsecode[0] == '.' ? dot?.GiveCharacterByMorseCode(morsecode.Substring(1)) ?? '?' : dash?.GiveCharacterByMorseCode(morsecode.Substring(1)) ?? '?';
+        {
+            return morsecode == "" ? character :
+                morsecode[0] == '.' ? dot?.GiveCharacterByMorseCode(morsecode.Substring(1)) ?? '?' :
+                dash?.GiveCharacterByMorseCode(morsecode.Substring(1)) ?? '?';
         }
 
         public string GiveMorsecode(char c)
         {
-            return GiveMorsecode(Char.ToLower(c), "");
+            return GiveMorsecode(char.ToLower(c), "");
         }
 
-        private string GiveMorsecode(char c, string code)
+        string GiveMorsecode(char c, string code)
         {
-            throw new NotImplementedException();
+            return c == character ? code : $"{dot?.GiveMorsecode(c, code + ".")}{dash?.GiveMorsecode(c, code + "-")}";
         }
     }
 }

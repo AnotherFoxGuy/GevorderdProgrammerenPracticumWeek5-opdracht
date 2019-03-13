@@ -68,7 +68,7 @@ namespace GevorderdProgrammerenPracticumWeek5
 
             if (left != null)
                 count += left.Count();
-            
+
             if (right != null)
                 count += right.Count();
 
@@ -77,15 +77,7 @@ namespace GevorderdProgrammerenPracticumWeek5
 
         public string InOrder()
         {
-            var res = "";
-
-            if (left != null)
-                res += $"{left.InOrder()} {item}";
-            
-            if (right != null)
-                res += $"{right.InOrder()} {item}";
-
-            return res;
+            return (left != null ? left.InOrder() + " " : "") + $"{item}" + (right != null ? " " + right.InOrder() : "");
         }
     }
 }

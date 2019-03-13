@@ -51,15 +51,7 @@ namespace GevorderdProgrammerenPracticumWeek5
         /// <returns>names of persons in the tree sorted from good to evil</returns>
         public string GetAllNamesSorted()
         {
-            var res = "";
-
-            if (lessEvil != null)
-                res += $"{lessEvil.GetAllNamesSorted()} - {person.GetName()}";
-            
-            if (moreEvil != null)
-                res += $"{moreEvil.GetAllNamesSorted()} - {person.GetName()}";
-
-            return res;
+            return (lessEvil != null ? lessEvil.GetAllNamesSorted() + " - " : "") + $"{person.GetName()}" + (moreEvil != null ? " - " + moreEvil.GetAllNamesSorted() : "");
         }
     }
 }
